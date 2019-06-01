@@ -15,6 +15,7 @@ class Page extends Model
 {
     public $timestamps = true;
     protected $table = 'pages';
-    protected $fillable = ['name', 'title','content'];
+
+    protected $fillable = ['title','pagecontent'];
 
 }

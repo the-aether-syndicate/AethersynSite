@@ -5,5 +5,5 @@
 @stop
 @section('full')
     <div>Bear with us, the site is under construction!</div>
-    {{ auth()->user() }}
+    
 @stop

@@ -13,9 +13,33 @@ class CreateDoctrineFittingTables extends Migration
      */
     public function up()
     {
-        Schema::create('doctrine_fitting', function (Blueprint $table) {
-            $table->unsignedInteger('doctrine_id');
-            $table->unsignedInteger('fitting_id');
+        Schema::create('user', function (Blueprint $table) {
+            $table->bigInteger('id')->primary();
+            $table->string('name');
+            $table->boolean('active');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+        Schema::create('role', function (Blueprint $table) {
+            $table->increments('id')->primary();
+            $table->string('name');
+            $table->string('description');
+            $table->timestamps();
+        });
+        Schema::create('role_user', function (Blueprint $table) {
+            $table->increments('id')->primary();
+            $table->integer('role_id');
+            $table->integer('user_id');
+            $table->timestamps();
+        });
+        Schema::create('refreshToken', function (Blueprint $table) {
+            $table->bigInteger('character_id')->primary();
+            $table->mediumText('refresh_token');
+            $table->json('scopes');
+            $table->dateTime('expires_on');
+            $table->dateTime('deleted_at');
+            $table->string('token');
+            $table->timestamps();
         });
         Schema::create('doctrine', function (Blueprint $table) {
             $table->increments('id');
@@ -27,6 +51,7 @@ class CreateDoctrineFittingTables extends Migration
             $table->string('fitname');
             $table->string('shiptype');
             $table->text('eftfitting');
+            $table->integer('doctrine_id');
             $table->timestamps();
         });
     }

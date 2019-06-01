@@ -1,17 +1,19 @@
 @extends('layouts.grids.4-4-4')
 @section('title', 'Doctrine')
 @section('content_header')
-<h1>TriglavDefense Doctrines</h1>
+<h1>TriglavDefense Doctrine</h1>
 @stop
 @section('left')
 <div class="box box-primary box-solid">
     <div class="box-header">
         <h3>Fittings</h3>
+        @if(auth()->user()->hasRole('Doctrine Edit'))
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-xs btn-box-tool" id="addFitting" data-toggle="modal" data-target="#addFitModal" data-placement="top" title="Add a new fitting">
                 <span class="fa fa-plus-square"></span>
             </button>
         </div>
+        @endif
     </div>
     <div class="box-body">
         <table id='fitlist' class="table table-hover" data-id="{{$doctrineid}}"style="vertical-align: top">
@@ -22,7 +24,7 @@
                 <th>Fit Name</th>
                 <th class="pull-right">Option</th>
             </tr>
-            <
+
             </thead>
             <tbody>
             </tbody>
@@ -145,6 +147,7 @@
                 if (result) {
                     $('#fitlist').find("tbody").empty();
                     for (var fitting in result) {
+
                         row = "<tr><td><img src='https://image.eveonline.com/Type/" + result[fitting].shipImg + "_32.png' height='24' /></td>";
                         row = row + "<td>" + result[fitting].shipType + "</td>";
                         row = row + "<td>" + result[fitting].name + "</td>";

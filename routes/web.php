@@ -35,6 +35,7 @@ Route::get('/join',[
     'as'   => 'join',
     'uses' => 'PageController@getJoin'
 ]);
+
 Route::get('/auth/eve', [
     'as'   => 'auth.eve',
     'uses' => 'Auth\LoginController@redirectToProvider',
@@ -43,9 +44,25 @@ Route::get('/auth/eve/callback', [
     'as'   => 'auth.eve.callback',
     'uses' => 'Auth\LoginController@handleProviderCallback',
 ]);
-Route::get('/pages/{page_name}', [
+Route::get('/pages', [
+    'as'    => 'pageindex',
+    'uses'  => 'PageController@getIndex'
+]);
+Route::get('/pages/{id}', [
    'as'    => 'pages',
    'uses'  => 'PageController@getPage'
+]);
+Route::get('/pages/{id}/edit', [
+    'as'    => 'pages.edit',
+    'uses'  => 'PageController@editPage'
+]);
+Route::get('/users', [
+    'as'    => 'users',
+    'uses'  => 'PageController@getUser'
+]);
+Route::get('/roles', [
+    'as'    => 'roles',
+    'uses'  => 'PageController@getRoles'
 ]);
 Route::get('/logout', [
     'as'   => 'logout',
@@ -56,4 +73,57 @@ Auth::routes(['register' => false]);
 Route::post('/doctrine/{id}/savefitting', [
     'as'   => 'doctrine.saveFitting',
     'uses' => 'DoctrineController@saveFitting',
+]);
+Route::post('/role/add', [
+    'as'    => 'role.add',
+    'uses'  => 'Auth\RoleController@addRole'
+]);
+Route::get('/newpage', [
+    'as'   => 'page.new',
+    'uses' => 'PageController@newPage'
+]);
+Route::post('/postpage', [
+    'as'    => 'page.post',
+    'uses'  => 'PageController@postPage'
+]);
+Route::post('/role/delete', [
+    'as'    => 'role.delete',
+    'uses'  => 'Auth\RoleController@deleteRole'
+]);
+Route::post('/role/give/', [
+    'as'    => 'role.give',
+    'uses'  => 'Auth\RoleController@giveUserRole'
+]);
+Route::get('/role/give/{user}/{role}', [
+    'as'    => 'ajax.role.give',
+    'uses'  => 'Auth\RoleController@giveUserRoleAjax'
+]);
+Route::post('/role/take', [
+    'as'    => 'role.take',
+    'uses'  => 'Auth\RoleController@takeUserRole'
+]);
+Route::get('/role/take/{user}/{role}', [
+    'as'    => 'ajax.role.take',
+    'uses'  => 'Auth\RoleController@takeUserRoleAjax'
+]);
+Route::get('/roles/get/', [
+    'as'   => 'roles.get',
+    'uses' => 'Auth\RoleController@getRoles'
+]);
+Route::get('/users/get/', [
+    'as'   => 'users.get',
+    'uses' => 'Auth\RoleController@getUsers'
+]);
+
+Route::get('/users/get/data', [
+    'as'   => 'users.getdata',
+    'uses' => 'Auth\RoleController@getUsersData'
+]);
+Route::get('/roles/user/get/{userid}', [
+    'as'   => 'roles.get.userroles',
+    'uses' => 'Auth\RoleController@getUserRoles'
+]);
+Route::get('/roles/get/{userid}', [
+    'as'   => 'roles.get.roleusers',
+    'uses' => 'Auth\RoleController@getRoleUsers'
 ]);

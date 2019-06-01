@@ -13,8 +13,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    protected $table = 'roles';
-    public $incrementing = true;
+    protected $table = 'role';
+
     protected $fillable = ['id', 'name', 'description'];
     public function users()
     {

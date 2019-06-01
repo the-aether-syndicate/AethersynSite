@@ -38,13 +38,30 @@ class User extends Model implements AuthenticatableContract
     {
         return $this->hasOne(RefreshToken::class, 'character_id', 'id');
     }
-    public function character()
-    {
-        return $this->belongsTo(CharacterInfo::class, 'id', 'character_id');
-    }
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+    public function checkRoles($roles)
+    {
+        if(!is_array($roles))
+        {
+            $roles=[$roles];
+        }
+
+        if($this->hasAnyRole($roles))
+        {
+            return true;
+        }
+        return false;
+    }
+    public function hasAnyRole($roles)
+    {
+        return (bool) $this->roles()->whereIn('name', $roles)->first();
+    }
+    public function hasRole($role)
+    {
+        return (bool) $this->roles()->where('name', $role)->first();
     }
 
 }

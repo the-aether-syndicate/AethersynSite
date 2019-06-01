@@ -109,7 +109,6 @@ return [
         'MAIN NAVIGATION',
         [
             'text'          => 'Doctrines',
-            'url'           => 'doctrines',
             'icon_color'    => 'red',
             'submenu'       => [
                 [
@@ -175,14 +174,14 @@ return [
         */
         'More Info',
         [
-            'text'       => 'Join us',
-            'url'        => 'join',
+            'text'       => 'Pages',
+            'url'        => 'pages',
             'icon_color' => 'red',
         ],
         [
             'text'       => 'In Game Channel',
             'url'        => '#',
-            'icon_color' => 'red',
+            'icon_color' => 'blue',
             'submenu'    => [
                 [
                     'text' => 'Triglav Defense',
@@ -191,12 +190,46 @@ return [
             ]
         ],
         [
-            'text'        => 'Discord Link',
+            'text'        => 'Discord',
             'url'         => 'https://discord.gg/ZH8jvj4',
-            'icon_color'    => 'blue'
+            'icon'        => 'comment',
+            'icon_color'    => 'blue',
+        ],
+        [
+            'text'        => 'Mumble Server',
+            'url'         => 'mumble://voip.triglavdefense.org/',
+            'icon'        => 'microphone',
+            'icon_color'    => 'blue',
 
         ],
+        [
+            'text'     => 'Admin',
+            'icon_color'    => 'red',
+            'icon'          => 'fa-cog',
+            'submenu'       =>
+            [
+                [
+                    'text'        => 'New Page',
+                    'url'         => 'newpage',
+                    'role'        => 'editor'
+
+                ],
+                [
+                    'text'        => 'Roles',
+                    'url'         => 'pages/roles',
+                    'role'        => 'admin'
+
+                ],
+                [
+                    'text'        => 'Users',
+                    'url'         => 'users',
+                    'icon_color'  => 'blue',
+                    'role'        => 'admin'
+
+                ]
+            ]
     ],
+        ],
 
     /*
     |--------------------------------------------------------------------------
