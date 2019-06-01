@@ -1,7 +1,7 @@
 @extends('layouts.grids.4-4-4')
-@section('title', 'Doctrine')
+@section('title', 'Users')
 @section('content_header')
-<h1>TriglavDefense Doctrines</h1>
+<h1>TriglavDefense Userlist</h1>
 @stop
 
 @section('left')
