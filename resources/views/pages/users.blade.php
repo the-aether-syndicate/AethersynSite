@@ -85,7 +85,7 @@
                 {
                     processing: true,
                     serverSide: true,
-                    ajax: 'http://triglavdefense/users/get/data',
+                    ajax: '/users/get/data',
                     columns: [
                         {data: 'id', render:
                         function(datafield)
