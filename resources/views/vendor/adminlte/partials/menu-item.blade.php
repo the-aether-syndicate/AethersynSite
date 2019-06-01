@@ -1,7 +1,7 @@
 @if (is_string($item))
     <li class="header">{{ $item }}</li>
 @else
-    @if(!isset($item['role']) || auth()->user()->hasRole($item['role']))
+    @if(!isset($item['role'])))
     <li class="{{ $item['class'] }}">
         <a href="{{ $item['href'] }}"
            @if (isset($item['target'])) target="{{ $item['target'] }}" @endif

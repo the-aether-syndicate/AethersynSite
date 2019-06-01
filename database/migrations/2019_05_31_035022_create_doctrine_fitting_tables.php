@@ -13,7 +13,7 @@ class CreateDoctrineFittingTables extends Migration
      */
     public function up()
     {
-        
+
     }
 
     /**
