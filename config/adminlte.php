@@ -216,7 +216,7 @@ return [
                 ],
                 [
                     'text'        => 'Roles',
-                    'url'         => 'pages/roles',
+                    'url'         => 'roles',
                     'role'        => 'admin'
 
                 ],
