@@ -6,9 +6,9 @@
         <a href="" class="btn btn-danger">End Fleet </a>
         @else
             @if($fleet->punches()->where('user_id', auth()->user()->id))
-                <a href="{{}}" class="btn btn-danger">End Fleet </a>
+                <a href="" class="btn btn-danger">End Fleet </a>
                 @else
-            <a href="{{}}" class="btn btn-success">Join Fleet </a>
+            <a href="" class="btn btn-success">Join Fleet </a>
                 @endif
             @endif
 
