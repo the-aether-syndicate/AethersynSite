@@ -13,7 +13,7 @@ class FixFleetTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('fleets');
+        Schema::dropIfExists('fleet');
         Schema::dropIfExists('punch');
         Schema::create('fleet', function (Blueprint $table) {
             $table->bigIncrements('id');
