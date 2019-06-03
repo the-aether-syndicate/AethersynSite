@@ -15,11 +15,11 @@ Route::prefix('auth')->namespace('Auth')->group(function ()
 {
 
     Route::get('/eve', [
-        'as'   => 'eve',
+        'as'   => 'auth.eve',
         'uses' => 'LoginController@redirectToProvider',
     ]);
     Route::get('/eve/callback', [
-        'as'   => 'eve.callback',
+        'as'   => 'auth.eve.callback',
         'uses' => 'LoginController@handleProviderCallback',
     ]);
 }
@@ -31,9 +31,15 @@ Route::prefix('srp')->namespace('SRP')->group(function ()
 );
 Route::prefix('fleet')->namespace('Fleet')->group(function ()
 {
-Route::get('fleets/index',
+Route::get('/index',
     [
         'as' => 'fleet.index',
+        'uses' => 'FleetController@getFleets'
+    ]);
+
+Route::get('/',
+    [
+        'as' => 'fleet',
         'uses' => 'FleetController@getFleets'
     ]);
 }
