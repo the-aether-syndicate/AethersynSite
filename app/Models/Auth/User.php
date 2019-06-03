@@ -16,6 +16,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Fleet\Punch;
 
 /**
  * @property boolean active
@@ -38,9 +39,15 @@ class User extends Model implements AuthenticatableContract
     {
         return $this->hasOne(RefreshToken::class, 'character_id', 'id');
     }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function punches()
+    {
+        return $this->hasMany(Punch::class);
     }
     public function checkRoles($roles)
     {

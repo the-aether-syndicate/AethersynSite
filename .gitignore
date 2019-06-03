@@ -21,3 +21,8 @@ my.cnf
 .idea/webServers.xml
 .idea/deployment.xml
 .idea/dataSources/e9ee6c62-0d0d-45e7-954c-d4103668ed6b.xml
+.vagrant/machines/trigdefense/virtualbox/action_set_name
+.idea/workspace.xml
+.idea/webServers.xml
+.idea/deployment.xml
+.idea/dataSources/e9ee6c62-0d0d-45e7-954c-d4103668ed6b.xml

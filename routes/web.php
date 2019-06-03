@@ -11,6 +11,35 @@
 |
 */
 
+Route::prefix('auth')->namespace('Auth')->group(function ()
+{
+
+    Route::get('/auth/eve', [
+        'as'   => 'eve',
+        'uses' => 'LoginController@redirectToProvider',
+    ]);
+    Route::get('/auth/eve/callback', [
+        'as'   => 'eve.callback',
+        'uses' => 'LoginController@handleProviderCallback',
+    ]);
+}
+);
+Route::prefix('srp')->namespace('SRP')->group(function ()
+{
+
+}
+);
+Route::prefix('fleet')->namespace('Fleet')->group(function ()
+{
+Route::get('fleets/index',
+    [
+        'as' => 'fleet.index',
+        'uses' => 'FleetController@getFleets'
+    ]);
+}
+);
+
+
 Route::get('/', [
     'as'   => 'landing',
     'uses' => 'HomeController@index'
@@ -36,14 +65,6 @@ Route::get('/join',[
     'uses' => 'PageController@getJoin'
 ]);
 
-Route::get('/auth/eve', [
-    'as'   => 'auth.eve',
-    'uses' => 'Auth\LoginController@redirectToProvider',
-]);
-Route::get('/auth/eve/callback', [
-    'as'   => 'auth.eve.callback',
-    'uses' => 'Auth\LoginController@handleProviderCallback',
-]);
 Route::get('/pages', [
     'as'    => 'pageindex',
     'uses'  => 'PageController@getIndex'

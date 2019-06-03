@@ -3,11 +3,19 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="6a53afdd-1e6e-48b5-938f-45df5f8eb213" name="TrigDefense" url="http://127.0.0.1">
-        <fileTransfer host="127.0.0.1" port="2207" accessType="SFTP">
+        <fileTransfer host="127.0.0.1" port="2222" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
-          <option name="port" value="2207" />
+          <option name="port" value="2222" />
+        </fileTransfer>
+      </webServer>
+      <webServer id="4cce4b33-9551-448a-9250-5a001d11ff2b" name="TrigDefDeploy" url="http://triglavdefense.org">
+        <fileTransfer host="triglavdefense.org" port="22" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>
