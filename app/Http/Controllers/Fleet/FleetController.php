@@ -11,7 +11,7 @@ class FleetController extends Controller
 
     public function newFleet()
     {
-        $fleet = Fleet::findOrNew(
+        $fleet = Fleet::firstOrNew(
             ['fc' => auth()->user()->id]
 
         );
