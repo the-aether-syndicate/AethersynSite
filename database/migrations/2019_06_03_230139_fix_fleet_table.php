@@ -26,8 +26,8 @@ class FixFleetTable extends Migration
         });
         Schema::create('punch', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamp('in_time');
-            $table->timestamp('out_time');
+            $table->timestamp('in_time')->nullable();
+            $table->timestamp('out_time')->nullable();
             $table->timestamps();
         });
     }
