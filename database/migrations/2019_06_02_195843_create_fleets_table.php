@@ -13,8 +13,19 @@ class CreateFleetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('fleets', function (Blueprint $table) {
+        Schema::create('fleet', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('fc');
+            $table->string('fleet_name');
+            $table->boolean('active');
+            $table->boolean('complete');
+            $table->text('loot');
+            $table->timestamps();
+        });
+        Schema::create('punch', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamp('in_time');
+            $table->timestamp('out_time');
             $table->timestamps();
         });
     }
@@ -26,6 +37,7 @@ class CreateFleetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('fleets');
+        Schema::dropIfExists('fleet');
+        Schema::dropIfExists('punch');
     }
 }

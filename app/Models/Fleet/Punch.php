@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Punch extends Model
 {
     protected $increments = true;
+    protected $table='punch';
     protected $fillable = [
         'in_time', 'out_time'
 

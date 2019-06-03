@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Fleet extends Model
 {
     protected $increments = true;
+    protected $table = 'fleet';
     protected $fillable = [
         'fc', 'fleet_name', 'loot','active','complete'
 
