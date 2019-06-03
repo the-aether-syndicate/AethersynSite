@@ -132,7 +132,7 @@
                     <h4 class="modal-title">Login with ESI</h4>
                 </div>
                 <div class="modal-body">
-                    <a href="auth/eve">Login in with EVE</a>
+                    <a href="{{route('eve')}}">Login in with EVE</a>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -11,14 +11,14 @@
 |
 */
 
-Route::namespace('Auth')->group(function ()
+Route::prefix('auth')->namespace('Auth')->group(function ()
 {
 
-    Route::get('/auth/eve', [
+    Route::get('/eve', [
         'as'   => 'eve',
         'uses' => 'LoginController@redirectToProvider',
     ]);
-    Route::get('/auth/eve/callback', [
+    Route::get('/eve/callback', [
         'as'   => 'eve.callback',
         'uses' => 'LoginController@handleProviderCallback',
     ]);
@@ -31,7 +31,7 @@ Route::prefix('srp')->namespace('SRP')->group(function ()
 );
 Route::prefix('fleet')->namespace('Fleet')->group(function ()
 {
-Route::get('index',
+Route::get('fleets/index',
     [
         'as' => 'fleet.index',
         'uses' => 'FleetController@getFleets'

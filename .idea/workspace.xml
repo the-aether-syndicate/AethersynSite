@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cf98f55-d7ce-4814-be7e-5287d3349b2e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Models/Fleet/Punch.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/fleets/includes/fleet_entry.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/fleets/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/no.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/e9ee6c62-0d0d-45e7-954c-d4103668ed6b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/e9ee6c62-0d0d-45e7-954c-d4103668ed6b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vagrant/machines/trigdefense/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/.vagrant/machines/trigdefense/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Auth/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Auth/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="8cf98f55-d7ce-4814-be7e-5287d3349b2e" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,8 +65,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/routes/web.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+                <state relative-caret-position="68">
+                  <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
                 </state>
               </provider>
             </entry>
@@ -487,13 +475,6 @@
               <item name="TrigDefense" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="fleets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TrigDefense" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TrigDefense" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="pages" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -584,7 +565,7 @@
       <workItem from="1559335399820" duration="28905000" />
       <workItem from="1559414011457" duration="9269000" />
       <workItem from="1559446473271" duration="646000" />
-      <workItem from="1559495711457" duration="13765000" />
+      <workItem from="1559495711457" duration="14016000" />
     </task>
     <servers />
   </component>
@@ -603,7 +584,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101037000" />
+    <option name="totallyTimeSpent" value="101288000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1013,8 +994,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="36" column="44" selection-start-line="36" selection-start-column="44" selection-end-line="36" selection-end-column="44" />
+        <state relative-caret-position="68">
+          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
         </state>
       </provider>
     </entry>
