@@ -42,6 +42,11 @@ Route::get('/',
         'as' => 'fleet',
         'uses' => 'FleetController@getFleets'
     ]);
+    Route::get('/new',
+        [
+            'as' => 'fleet.add',
+            'uses' => 'FleetController@newFleet'
+        ]);
 }
 );
 

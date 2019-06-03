@@ -9,9 +9,9 @@
             <h3>Active Fleets</h3>
             @if(auth()->user()->hasRole('Fleet Commander'))
                 <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-xs btn-box-tool" id="addFitting" data-toggle="modal" data-target="#addFitModal" data-placement="top" title="Add a new fitting">
+                    <a href="{{ route('fleet.add') }}" class="btn btn-xs btn-box-tool">
                         <span class="fa fa-plus-square"></span>
-                    </button>
+                    </a>
                 </div>
             @endif
         </div>
