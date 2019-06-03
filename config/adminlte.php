@@ -120,6 +120,12 @@ return [
             ]
 
         ],
+        [
+            'text'          => 'Fleets',
+            'icon'          => 'fa-shield-alt',
+            'icon_color'    => 'blue',
+            'url'           => 'fleet/index'
+        ],
 
         /*
         'ACCOUNT SETTINGS',
