@@ -11,14 +11,14 @@
 |
 */
 
-Route::prefix('auth')->namespace('Auth')->group(function ()
+Route::namespace('Auth')->group(function ()
 {
 
-    Route::get('/eve', [
+    Route::get('/auth/eve', [
         'as'   => 'eve',
         'uses' => 'LoginController@redirectToProvider',
     ]);
-    Route::get('/eve/callback', [
+    Route::get('/auth/eve/callback', [
         'as'   => 'eve.callback',
         'uses' => 'LoginController@handleProviderCallback',
     ]);
