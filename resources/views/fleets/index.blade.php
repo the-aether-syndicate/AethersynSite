@@ -28,5 +28,6 @@
         @each('fleets.includes.fleet_entry', $active, 'fleet')
     </table>
         </div>
+    </div>
 
 @stop
