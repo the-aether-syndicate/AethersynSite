@@ -31,7 +31,7 @@ Route::prefix('srp')->namespace('SRP')->group(function ()
 );
 Route::prefix('fleet')->namespace('Fleet')->group(function ()
 {
-Route::get('fleets/index',
+Route::get('index',
     [
         'as' => 'fleet.index',
         'uses' => 'FleetController@getFleets'
