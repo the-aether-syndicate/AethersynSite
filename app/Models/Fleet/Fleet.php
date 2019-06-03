@@ -13,7 +13,7 @@ class Fleet extends Model
         'fc', 'fleet_name', 'loot','active','complete'
 
     ];
-    protected function getfc()
+    public function getfc()
     {
         $user = User::find($this->fc);
         return $user;
