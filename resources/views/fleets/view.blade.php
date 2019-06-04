@@ -89,11 +89,7 @@
                 </thead>
                 <tbody>
 
-                @foreach($fleet->loot->item as $loot)
-                    <tr>
-                        <td>{{$loot->items->name}}</td>
-                    </tr>
-                @endforeach
+                
                 </tbody>
             </table>
         </div>
