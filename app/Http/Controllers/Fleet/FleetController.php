@@ -23,7 +23,7 @@ class FleetController extends Controller
     {
         $fleet = Fleet::find($fleetid);
         $fleet->active = false;
-        $fleet->completed = true;
+        $fleet->complete = true;
         $fleet->save();
         return redirect()->back();
 
