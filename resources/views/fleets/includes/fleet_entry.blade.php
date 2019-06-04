@@ -4,18 +4,26 @@
     <td>{{$fleet->created_at}}</td>
     <td>
         @if($fleet->active)
-        @if($fleet->getfc()->id == auth()->user()->id)
-        <a href="{{route('fleet.end', ['fleetid' => $fleet->id])}}" class="btn btn-danger">End Fleet </a>
+            @if($fleet->getfc()->id == auth()->user()->id)
+                <a href="{{route('fleet.end', ['fleetid' => $fleet->id])}}" class="btn btn-danger">End Fleet </a>
+            @else
+                @switch($fleet->hasMember(auth()->user()->id))
+                    @case(0)
+                    <a href="{{route('fleet.join', ['fleetid' => $fleet->id])}}" class="btn btn-success">Join Fleet</a>
+                    @break
+                    @case(1)
+                    <a href="{{route('fleet.leave', ['fleetid' => $fleet->id])}}" class="btn btn-danger">Leave Fleet</a>
+                    @break
+                    @case(2)
+                    <a class="btn btn-default" title="Cannot Rejoin Active Fleets">Rejoin Fleet </a>
+                    @break
+                @endswitch
+            @endif
         @else
-            @if($fleet->punches()->where('user_id', auth()->user()->id)->get())
-                <a href="{{route('fleet.leave', ['fleetid' => $fleet->id])}}" class="btn btn-danger">Leave Fleet </a>
-                @else
-            <a href="{{route('fleet.join', ['fleetid' => $fleet->id])}}" class="btn btn-success">Join Fleet </a>
-                @endif
+            @if($fleet->complete && auth()->user()->hasRole('Fleet Commander'))
+                <a href="{{route('fleet.view', ['fleetid' => $fleet->id])}}" class="btn btn-success">View</a>
             @endif
         @endif
-        @if($fleet->complete)
-                <a href="{{route('fleet.leave', ['fleetid' => $fleet->id])}}" class="btn btn-success">Loot</a>
-        @endif
     </td>
+
 </tr>

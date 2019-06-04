@@ -4,22 +4,30 @@ namespace App\Models\Fleet;
 
 use App\Models\Auth\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Punch extends Model
+class Punch extends Pivot
 {
     protected $increments = true;
-    protected $table='punch';
+    protected $table='fleet_user';
     protected $fillable = [
-        'in_time', 'out_time'
+        'in_time', 'out_time', 'user_id', 'fleet_id'
 
     ];
 
-    protected function fleet()
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+
+    }
+
+    public function fleet()
     {
         return $this->belongsTo(Fleet::class);
     }
 
-    protected function user()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

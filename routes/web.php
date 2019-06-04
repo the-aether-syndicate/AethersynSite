@@ -62,6 +62,20 @@ Route::get('/',
             'as' => 'fleet.leave',
             'uses' => 'FleetController@leaveFleet'
         ]);
+    Route::get('/view/{fleetid}',
+        [
+            'as' => 'fleet.view',
+            'uses' => 'FleetController@getFleetView'
+        ]);
+    Route::get('/view/participants/{fleetid}',
+        [
+            'as' => 'fleet.participants',
+            'uses' => 'FleetController@getFleetView'
+        ]);
+    Route::post('/view/{id}/saveLoot', [
+        'as'   => 'fleet.saveLoot',
+        'uses' => 'FleetController@saveLoot',
+    ]);
 }
 );
 

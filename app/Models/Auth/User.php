@@ -9,6 +9,7 @@
 namespace App\Models\Auth;
 
 
+use App\Models\Fleet\Fleet;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Auth\Authenticatable;
@@ -48,6 +49,10 @@ class User extends Model implements AuthenticatableContract
     public function punches()
     {
         return $this->hasMany(Punch::class);
+    }
+    public function fleets()
+    {
+        return $this->belongsToMany(Fleet::class)->using(Punch::class);
     }
     public function checkRoles($roles)
     {

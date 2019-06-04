@@ -16,7 +16,7 @@
             @endif
         </div>
         <div class="box-body">
-    <table>
+    <table class="table">
         <thead>
             <tr>
                 <th></th>
@@ -25,11 +25,14 @@
                 <th>Options</th>
             </tr>
         </thead>
+        <tbody>
         @each('fleets.includes.fleet_entry', $active, 'fleet')
+        </tbody>
     </table>
 
         </div>
     </div>
+
     <div class="box box-primary box-solid">
         <div class="box-header">
             <h3>Active Fleets</h3>
@@ -42,7 +45,7 @@
             @endif
         </div>
         <div class="box-body">
-            <table>
+            <table class="table">
                 <thead>
                 <tr>
                     <th></th>
@@ -51,7 +54,9 @@
                     <th>Options</th>
                 </tr>
                 </thead>
+                <tbody>
                 @each('fleets.includes.fleet_entry', $completed, 'fleet')
+                </tbody>
             </table>
 
         </div>

@@ -23,6 +23,10 @@ class PageController extends Controller
 
     public function getJoin()
     {
+        if(auth()->user()==null||!auth()->user()->hasRole('Manager'))
+        {
+            return view('no');
+        }
         return view('pages.join');
     }
     public function getPage($pageid)
@@ -36,6 +40,10 @@ class PageController extends Controller
     }
     public function getUser()
     {
+        if(!auth()->user()->hasRole('Manager'))
+        {
+            return view('no');
+        }
         $roles = Role::all()->map(function ($role){
            return $role->name;
         });
