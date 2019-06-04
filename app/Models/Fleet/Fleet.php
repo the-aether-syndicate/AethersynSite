@@ -23,7 +23,7 @@ class Fleet extends Model
         $this->active = false;
         $this->completed = true;
     }
-    protected function punches()
+    public function punches()
     {
         return $this->hasMany(Punch::class);
     }
