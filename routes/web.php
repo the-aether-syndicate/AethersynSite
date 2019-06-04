@@ -52,6 +52,16 @@ Route::get('/',
             'as' => 'fleet.end',
             'uses' => 'FleetController@endFleet'
         ]);
+    Route::get('/join/{fleetid}',
+        [
+            'as' => 'fleet.join',
+            'uses' => 'FleetController@joinFleet'
+        ]);
+    Route::get('/leave/{fleetid}',
+        [
+            'as' => 'fleet.leave',
+            'uses' => 'FleetController@leaveFleet'
+        ]);
 }
 );
 
