@@ -12,7 +12,9 @@
     <div class="box-body">
         @php
         use App\Models\Auth\Role;
+        use App\Models\Doctrines\Fitting;
             $roles = Role::all();
+            $fits = Fitting::all();
         @endphp
         <form method="POST" action="/role/add">
             @csrf
@@ -26,6 +28,20 @@
 
         </form>
 
+        <form method="POST" action="/role/give">
+            @csrf
+            <input type="hidden" name="user" value="{{auth()->user()->name}}">
+            <br>
+            Add Role:<br>
+            <select name="role">
+                @foreach($roles as $role)
+                    <option value="{{$role->name}}">{{$role->name}}</option>
+                @endforeach
+            </select>
+            <br>
+            <input type="submit" value="Submit">
+
+        </form>
         <form method="POST" action="/role/give">
             @csrf
             <input type="hidden" name="user" value="{{auth()->user()->name}}">
@@ -55,6 +71,19 @@
 
         </form>
         <form method="POST" action="/role/delete">
+            @csrf
+
+            Delete Role:<br>
+            <select name="name">
+                @foreach($roles as $role)
+                    <option value="{{$role->name}}">{{$role->name}}</option>
+                @endforeach
+            </select>
+            <br>
+            <input type="submit" value="Submit">
+
+        </form>
+        <form method="GET" action="/role/delete">
             @csrf
 
             Delete Role:<br>

@@ -3,6 +3,7 @@
 namespace App\Models\Fleet;
 
 use App\Models\Auth\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
@@ -14,7 +15,7 @@ class Fleet extends Model
         'loot' => 'array'
     ];
     protected $fillable = [
-        'fc', 'fleet_name','active','complete'
+        'fc', 'fleet_name','active','complete','ended_at'
 
     ];
     public function getfc()
@@ -26,6 +27,7 @@ class Fleet extends Model
     {
         $this->active = false;
         $this->completed = true;
+        $this->ended_at = Carbon::now();
     }
     public function punches()
     {
@@ -48,6 +50,24 @@ class Fleet extends Model
             }
         }
         return 0;
+    }
+    public function duration()
+    {
+        $start = Carbon::parse($this->created_at);
+        $end = Carbon::parse($this->ended_at);
+        $hours = $end->diffInHours($start);
+        $minutes = $end->diffInMinutes($start)%60;
+        $seconds = $end->diffInSeconds($start)%60;
+
+        return $hours . ':' . $minutes . ':' . $seconds;
+    }
+    public function seconds()
+    {
+        $start = Carbon::parse($this->created_at);
+        $end = Carbon::parse($this->ended_at);
+        $seconds = $end->diffInSeconds($start);
+
+        return $seconds;
     }
     public function punchIn()
     {

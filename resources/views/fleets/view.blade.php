@@ -1,4 +1,4 @@
-@extends('layouts.grids.4-4-4')
+@extends('layouts.grids.4-8')
 @section('title', 'Home')
 @section('content_header')
     <h1>TriglavDefense Fleets</h1>
@@ -16,6 +16,7 @@
                     <th>FC</th>
                     <th>Start Time</th>
                     <th>End Time</th>
+                    <th>Duration</th>
 
                 </tr>
                 </thead>
@@ -25,10 +26,11 @@
                         <td>{{$fleet->getfc()->name}}</td>
                         <td>{{$fleet->created_at}}</td>
                         @if($fleet->complete)
-                            <td>{{$fleet->updated_at}}</td>
+                            <td>{{$fleet->ended_at}}</td>
                         @else
                             <td></td>
                         @endif
+                        <td>{{$fleet->duration()}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -44,31 +46,35 @@
                 <tr>
                     <th></th>
                     <th>Member</th>
-                    <th>In Time</th>
-                    <th>Out Time</th>
-
+                    <th>Duration</th>
+                    @if($fleet->loot)
+                        <th>Payout</th>
+                    @endif
                 </tr>
                 </thead>
                 <tbody>
-
+                @if($fleet->participants)
                     @foreach($fleet->participants as $user)
                         <tr>
                         <td><img src='https://imageserver.eveonline.com/Character/{{ $user->id }}_32.jpg' height='24' /></td>
                         <td>{{$user->name}}</td>
-                        <td>{{$user->punches()->where('fleet_id', $fleet->id)->first()->in_time}}</td>
-                        <td>{{$user->punches()->where('fleet_id', $fleet->id)->first()->out_time}}</td>
+                        <td>{{$user->punches()->where('fleet_id', $fleet->id)->first()->duration()}} {{sprintf("%.2f%%", ($user->punches()->where('fleet_id', $fleet->id)->first()->seconds()/$fleet->seconds()) * 100)}}</td>
+                        @if($fleet->loot)
+                            <td>{{number_format(($fleet->loot['totals']['buy'] * (1/$fleet->participants()->count())) * ($user->punches()->where('fleet_id', $fleet->id)->first()->seconds()/$fleet->seconds()))}}</td>
+                        @endif
                         </tr>
                     @endforeach
+                @endif
 
                 </tbody>
             </table>
         </div>
     </div>
 @stop
-@section('center')
+@section('right')
     <div class="box box-primary box-solid">
         <div class="box-header">
-            <h3>Participants</h3>
+            <h3>Loot</h3>
             @if($fleet->loot == null)
                 <button type="button" class="btn btn-xs btn-box-tool" id="addLoot" data-toggle="modal" data-target="#addLootModal" data-placement="top" title="Add a new fitting">
                     <span class="fa fa-plus-square"></span>
@@ -83,13 +89,30 @@
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>Jita Buy</th>
-                    <th>Jita Sell</th>
+                    <th>Total</th>
 
                 </tr>
                 </thead>
                 <tbody>
+                @if($fleet->loot)
+                    @foreach($fleet->loot['items'] as $loot)
+                    <tr>
+                        <td></td>
+                        <td>{{$loot['name']}}</td>
+                        <td>{{$loot['quantity']}}</td>
+                        <td>{{number_format($loot['prices']['buy']['max'])}}</td>
+                        <td>{{number_format($loot['prices']['buy']['max'] * $loot['quantity'])}}</td>
+                    </tr>
+                    @endforeach
+                    <tr>
+                        <td></td>
+                        <td>Total:</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{number_format($fleet->loot['totals']['buy'])}}</td>
+                    </tr>
+                    @endif
 
-                
                 </tbody>
             </table>
         </div>
@@ -102,7 +125,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Are you sure?</h4>
                 </div>
-                <form role="form" action="{{ route('fleet.saveLoot', ['id' => 1]) }}" method="post">
+                <form role="form" action="{{ route('fleet.saveLoot', ['id' => $fleet->id]) }}" method="post">
                     <div class="modal-body">
                         <p>Cut and Paste Loot below</p>
                         {{ csrf_field() }}

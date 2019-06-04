@@ -135,6 +135,10 @@ Route::post('/doctrine/{id}/savefitting', [
     'as'   => 'doctrine.saveFitting',
     'uses' => 'DoctrineController@saveFitting',
 ]);
+Route::get('/deletefitting/', [
+    'as'   => 'doctrine.deleteFitting',
+    'uses' => 'DoctrineController@deleteFitting',
+]);
 Route::post('/role/add', [
     'as'    => 'role.add',
     'uses'  => 'Auth\RoleController@addRole'

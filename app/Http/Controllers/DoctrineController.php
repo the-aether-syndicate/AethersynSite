@@ -75,7 +75,7 @@ class DoctrineController extends Controller
     {
         Fitting::destroy('$id');
 
-        return "Success";
+        return redirect()->back();
     }
     public function getEftFittingById($id)
     {

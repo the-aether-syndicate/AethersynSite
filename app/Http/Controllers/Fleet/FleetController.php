@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Fleet;
 
 use App\Models\Fleet\Fleet;
 use App\Validation\Fleet\LootValidation;
+use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,6 +25,7 @@ class FleetController extends Controller
         $fleet = Fleet::find($fleetid);
         $fleet->active = false;
         $fleet->complete = true;
+        $fleet->ended_at = Carbon::now();
         $fleet->save();
         return redirect()->back();
 
@@ -31,6 +33,8 @@ class FleetController extends Controller
     public function getFleetView($fleetid)
     {
         $fleet = Fleet::find($fleetid);
+
+
         return view('fleets.view', compact('fleet'));
     }
     public function getParticipants($fleetid)
@@ -89,38 +93,6 @@ class FleetController extends Controller
     }
     public function parseLoot($fleetid)
     {
-        $orderarray = explode("\n", Fleet::find($fleetid)->loot);
-        $itemarray = [];
-        $total_isk = 0;
-        $itemstring = '';
-        $volume = 0;
-        $itemvolume=0;
-        $client = new Client(['headers' => [
-            'User-Agent' => 'The Aether Syndicate Ordering Tool',
-            'Content-Type: application/x-www-form-urlencoded'
-        ]]);
-        $res = $client->post('https://evepraisal.com/appraisal.json?market=jita&persist=no', [
-            'form_params' => [
-                'raw_textarea' =>$order
-            ]]);
-        $data2 = $res->getBody();
-        $data = [];
-        $data = json_decode($data2, true);
-        $resItemArray = [];
-        $resItemArray = $data['appraisal']['items'];
-        foreach ($resItemArray as $item)
-        {
-            $tempArray = [];
-            $tempArray['itemID'] = $item['typeID'];
-            $tempArray['item'] = $item['typeName'];
-            $tempArray['quantity'] = $item['quantity'];
-            $tempArray['cost'] = $item['prices']['sell']['min']*$item['quantity'];
-            $tempArray['volume'] = $item['typeVolume'];
-            $itemarray['items'][] = $tempArray;
-        }
-        $itemarray['Total'] = $data['appraisal']['totals']['sell'];
-        $itemarray['volume'] = $data['appraisal']['totals']['volume'];
-        return $itemarray;
     }
 
 }
