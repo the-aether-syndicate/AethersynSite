@@ -3,7 +3,7 @@
     <td>{{$fleet->getfc()->name}}</td>
     <td>{{$fleet->created_at}}</td>
     <td>@if($fleet->getfc()->id == auth()->user()->id)
-        <a href="" class="btn btn-danger">End Fleet </a>
+        <a href="{{route('fleet.end', ['fleetid' => $fleet->id])}}" class="btn btn-danger">End Fleet </a>
         @else
             @if($fleet->punches()->where('user_id', auth()->user()->id))
                 <a href="" class="btn btn-danger">End Fleet </a>
