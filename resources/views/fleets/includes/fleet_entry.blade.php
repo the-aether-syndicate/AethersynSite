@@ -1,5 +1,5 @@
 <tr>
-    <td><img src=\'https://imageserver.eveonline.com/Character/{{ $fleet->getfc()->id }}_32.jpg\' height=\'24\' /></td>
+    <td><img src='https://imageserver.eveonline.com/Character/{{ $fleet->getfc()->id }}_32.jpg' height='24' /></td>
     <td>{{$fleet->getfc()->name}}</td>
     <td>{{$fleet->created_at}}</td>
     <td>@if($fleet->getfc()->id == auth()->user()->id)

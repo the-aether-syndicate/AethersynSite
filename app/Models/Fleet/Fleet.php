@@ -18,7 +18,11 @@ class Fleet extends Model
         $user = User::find($this->fc);
         return $user;
     }
-
+    public function endFleet()
+    {
+        $this->active = false;
+        $this->completed = true;
+    }
     protected function punches()
     {
         return $this->hasMany(Punch::class);

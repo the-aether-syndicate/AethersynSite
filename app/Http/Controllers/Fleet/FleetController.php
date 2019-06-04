@@ -19,6 +19,13 @@ class FleetController extends Controller
         $fleet->save();
         return redirect()->back();
     }
+    public function endFleet($fleetid)
+    {
+        $fleet = Fleet::find($fleetid);
+        $fleet->endFleet();
+        return redirect()->back();
+
+    }
     public function getFleets()
     {
         if(!auth()->user())
