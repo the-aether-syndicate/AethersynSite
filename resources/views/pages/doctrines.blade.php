@@ -7,6 +7,7 @@
 <div class="box box-primary box-solid">
     <div class="box-header">
         <h3>Fittings</h3>
+        @if(auth()->user())
         @if(auth()->user()->hasRole('Doctrine Edit'))
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-xs btn-box-tool" id="addFitting" data-toggle="modal" data-target="#addFitModal" data-placement="top" title="Add a new fitting">
@@ -14,6 +15,7 @@
             </button>
         </div>
         @endif
+            @endif
     </div>
     <div class="box-body">
         <table id='fitlist' class="table table-hover" data-id="{{$doctrineid}}"style="vertical-align: top">
@@ -58,7 +60,13 @@
 @stop
 @section('center')
     <div class="box box-primary box-solid" id="fitting-box">
-        <div class="box-header"><h3 class="box-title" id='middle-header'></h3></div>
+        <div class="box-header"><h3 class="box-title" id='middle-header'></h3>
+            <div class="box-tools pull-right">
+                <button type="button" class="btn btn-xs btn-box-tool" id="deleteFit" data-placement="top" title="Delete fitting">
+                    <span class="fa fa-minus-square"></span>
+                </button>
+            </div>
+        </div>
         <input type="hidden" id="fittingId" value=""\>
         <div class="box-body">
             <div id="fitting-window">
@@ -127,11 +135,12 @@
 @endsection
 @push('js')
     <script type="text/javascript">
-        var skills_informations;
+        var activeFit;
         $('#fitting-box').hide();
         $('#skills-box').hide();
         $('#eftexport').hide();
         $('#showeft').val('');
+
 
 
         $('#fitlist').ready(function () {
@@ -148,7 +157,7 @@
                     $('#fitlist').find("tbody").empty();
                     for (var fitting in result) {
 
-                        row = "<tr><td><img src='https://image.eveonline.com/Type/" + result[fitting].shipImg + "_32.png' height='24' /></td>";
+                        row = "<tr id=\'fit"+ result[fitting].id +"\'><td><img src='https://image.eveonline.com/Type/" + result[fitting].shipImg + "_32.png' height='24' /></td>";
                         row = row + "<td>" + result[fitting].shipType + "</td>";
                         row = row + "<td>" + result[fitting].name + "</td>";
                         row = row + "<td><button type='button' id='viewfit' class='btn btn-xs btn-success pull-right' data-id='" + result[fitting].id + "' data-toggle='tooltip' data-placement='top' title='View Fitting'>";
@@ -163,6 +172,7 @@
                 .find('tbody')
                 .empty();
             $('#fittingId').text($(this).data('id'));
+            activeFit = $(this).data('id');
             uri = "['id' => " + $(this).data('id') +"]";
             $.ajax({
                 headers: function () {
@@ -178,6 +188,26 @@
                 $('#showeft').val('');
                 $('#fitting-box').show();
                 fillFittingWindow(result);
+            });
+            $('#fitting-box').ready(function () {
+
+                $('#fitting-box').on('click', '#deleteFit', function() {
+                    tr = $('#fit');
+                    $.ajax({
+                        headers: function () {
+                        },
+                        url: "/fitting/delete/"+activeFit,
+                        type: "GET",
+                        dataType: 'json',
+                        timeout: 10000
+                    }).done( function (result) {
+                        setTimeout(function(){
+                            location = location;
+                        });
+
+
+                    });
+                });
             });
             /*$.ajax({
                 headers: function () {

@@ -37,11 +37,10 @@ class Punch extends Pivot
     {
         $start = Carbon::parse($this->in_time);
         $end = Carbon::parse($this->out_time);
-        $hours = $end->diffInHours($start);
-        $minutes = $end->diffInMinutes($start)%60;
-        $seconds = $end->diffInSeconds($start)%60;
 
-        return $hours . ':' . $minutes . ':' . $seconds;
+        $seconds = $end->diffInSeconds($start);
+
+        return $seconds;
     }
     public function seconds()
     {

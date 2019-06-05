@@ -57,6 +57,11 @@ Route::get('/',
             'as' => 'fleet.join',
             'uses' => 'FleetController@joinFleet'
         ]);
+    Route::get('/rejoin/{fleetid}',
+        [
+            'as' => 'fleet.rejoin',
+            'uses' => 'FleetController@rejoinFleet'
+        ]);
     Route::get('/leave/{fleetid}',
         [
             'as' => 'fleet.leave',
@@ -135,7 +140,7 @@ Route::post('/doctrine/{id}/savefitting', [
     'as'   => 'doctrine.saveFitting',
     'uses' => 'DoctrineController@saveFitting',
 ]);
-Route::get('/deletefitting/', [
+Route::get('/fitting/delete/{id}', [
     'as'   => 'doctrine.deleteFitting',
     'uses' => 'DoctrineController@deleteFitting',
 ]);

@@ -6,6 +6,9 @@
         @if($fleet->active)
             @if($fleet->getfc()->id == auth()->user()->id)
                 <a href="{{route('fleet.end', ['fleetid' => $fleet->id])}}" class="btn btn-danger">End Fleet </a>
+
+                <a href="{{route('fleet.view', ['fleetid' => $fleet->id])}}" class="btn btn-success">View</a>
+
             @else
                 @switch($fleet->hasMember(auth()->user()->id))
                     @case(0)
@@ -15,7 +18,7 @@
                     <a href="{{route('fleet.leave', ['fleetid' => $fleet->id])}}" class="btn btn-danger">Leave Fleet</a>
                     @break
                     @case(2)
-                    <a class="btn btn-default" title="Cannot Rejoin Active Fleets">Rejoin Fleet </a>
+                    <a href="{{route('fleet.rejoin', ['fleetid' => $fleet->id])}}" class="btn btn-success">Rejoin Fleet</a>
                     @break
                 @endswitch
             @endif
@@ -25,5 +28,7 @@
             @endif
         @endif
     </td>
-
 </tr>
+@section('modals')
+
+@stop

@@ -18,6 +18,7 @@ class FleetController extends Controller
         $fleet->fc= auth()->user()->id;
         $fleet->fleet_name= auth()->user()->name.'\'s Fleet';
         $fleet->save();
+        $fleet->punchIn();
         return redirect()->back();
     }
     public function endFleet($fleetid)
@@ -32,10 +33,55 @@ class FleetController extends Controller
     }
     public function getFleetView($fleetid)
     {
-        $fleet = Fleet::find($fleetid);
+        $fleetModel = Fleet::find($fleetid);
+        $fleet = [];
+        $punchlist = [];
+
+        $punches = $fleetModel->punches()->get();
+        $fleetname = $fleetModel->fleet_name;
+        $fleetid = $fleetModel->id;
+        $fcid = $fleetModel->getfc()->id;
+        $fcname = $fleetModel->getfc()->name;
+        $complete = $fleetModel->complete;
+        $started = $fleetModel->created_at;
+        $ended = $fleetModel->ended_at;
+        $duration = $fleetModel->duration();
+        $count = $fleetModel->participants->count();
+        $loot = $fleetModel->loot;
+
+        $fleet = compact(
+            'fcid','fcname','complete','started','ended','duration','loot','fleetname','fleetid','count'
+            );
 
 
-        return view('fleets.view', compact('fleet'));
+        foreach ($punches as $punch)
+        {
+            $userID = $punch->user_id;
+            $userName = User::find($userID)->name;
+            $duration = $punch->duration();
+
+            array_push($punchlist,[
+
+                    'userID' => $userID,
+                    'userName' => $userName,
+                    'duration' => $duration,
+
+                ]);
+        }
+        $tempList = [];
+        foreach ($punchlist as $punch) {
+            $userID = $punch['userID'];
+            if (!isset($tempList[$userID]))
+            {
+                $tempList[$userID] = $punch;
+            } else {
+                $tempList[$punch['userID']]['duration'] = $tempList[$punch['userID']]['duration']+$punch['duration'];
+            }
+
+        }
+            $punchlist=$tempList;
+       // dd(compact('fleet','punchlist'));
+        return view('fleets.view', compact('fleet','punchlist'));
     }
     public function getParticipants($fleetid)
     {
@@ -82,6 +128,13 @@ class FleetController extends Controller
         $fleet = Fleet::where('id', $fleetid)->first();
         $user = auth()->user();
         $redirect = $fleet->punchIn($user);
+        return $redirect;
+    }
+    public function rejoinFleet($fleetid)
+    {
+        $fleet = Fleet::where('id', $fleetid)->first();
+        $user = auth()->user();
+        $redirect = $fleet->rejoin($user);
         return $redirect;
     }
     public function leaveFleet($fleetid)

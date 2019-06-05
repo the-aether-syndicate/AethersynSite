@@ -67,15 +67,22 @@ class DoctrineController extends Controller
     }
     public function deleteDoctrine($id)
     {
-        Doctrine::destroy($id);
 
-        return "Success";
+        if(auth()->user()->hasRole('Doctrine Edit')) {
+            Doctrine::destroy($id);
+            return redirect()->back();
+        }
+        return view('no');
     }
     public function deleteFitting($id)
     {
-        Fitting::destroy('$id');
+        if(auth()->user()->hasRole('Doctrine Edit')) {
+            //dd(Fitting::find($id));
 
-        return redirect()->back();
+            Fitting::destroy($id);
+            return "success";
+        }
+        return view('no');
     }
     public function getEftFittingById($id)
     {

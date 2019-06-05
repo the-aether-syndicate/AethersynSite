@@ -61,5 +61,5 @@
 
         </div>
     </div>
-
 @stop
+@yield('modals')
