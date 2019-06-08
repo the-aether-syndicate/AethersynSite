@@ -37,7 +37,6 @@ class Punch extends Pivot
     {
         $start = Carbon::parse($this->in_time);
         $end = Carbon::parse($this->out_time);
-
         $seconds = $end->diffInSeconds($start);
 
         return $seconds;

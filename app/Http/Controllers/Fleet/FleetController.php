@@ -24,9 +24,7 @@ class FleetController extends Controller
     public function endFleet($fleetid)
     {
         $fleet = Fleet::find($fleetid);
-        $fleet->active = false;
-        $fleet->complete = true;
-        $fleet->ended_at = Carbon::now();
+        $fleet->endFleet();
         $fleet->save();
         return redirect()->back();
 

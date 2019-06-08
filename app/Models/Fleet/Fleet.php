@@ -26,7 +26,14 @@ class Fleet extends Model
     public function endFleet()
     {
         $this->active = false;
-        $this->completed = true;
+        $this->complete = true;
+        $this->ended_at = Carbon::now();
+        $punches = $this->punches()->where('out_time', null)->get();
+        //dd($punches);
+        foreach ($punches as $punch)
+        {
+            $punch->out_time = $this->ended_at;
+        }
         $this->punchOut();
         $this->ended_at = Carbon::now();
     }
