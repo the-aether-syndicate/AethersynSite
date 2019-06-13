@@ -184,11 +184,7 @@ return [
             'icon_color'    => 'blue',
 
         ],
-        [
-            'text' => 'New Page',
-            'url'  => 'pages/newpages',
-            'icon' => 'fa-plus',
-        ],
+
         [
             'text'     => 'Admin',
             'icon_color'    => 'red',
@@ -213,7 +209,12 @@ return [
                     'icon_color'  => 'blue',
                     'role'        => 'admin'
 
-                ]
+                ],
+                [
+                    'text' => 'New Page',
+                    'url'  => 'pages/newpage',
+                    'icon' => 'fa-plus',
+                ],
             ]
     ],
         ],
