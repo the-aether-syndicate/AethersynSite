@@ -22,6 +22,8 @@ class FixFleetTable extends Migration
             $table->boolean('active');
             $table->boolean('complete');
             $table->text('loot');
+            $table->timestamp('ended_at');
+            $table->timestamp('start_at');
             $table->timestamps();
         });
         Schema::create('punch', function (Blueprint $table) {

@@ -15,7 +15,7 @@ class Fleet extends Model
         'loot' => 'array'
     ];
     protected $fillable = [
-        'fc', 'fleet_name','active','complete','ended_at'
+        'fc', 'fleet_name','active','complete','ended_at','start_at'
 
     ];
     public function getfc()

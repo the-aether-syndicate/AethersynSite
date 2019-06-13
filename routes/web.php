@@ -83,7 +83,45 @@ Route::get('/',
     ]);
 }
 );
+Route::prefix('pages')->namespace('Pages')->group(function (){
+    Route::get('/', [
+        'as'    => 'pageindex',
+        'uses'  => 'PageController@getIndex'
+    ]);
+    Route::get('/{id}', [
+        'as'    => 'pages',
+        'uses'  => 'PageController@getPage'
+    ]);
+    Route::get('/{id}/edit', [
+        'as'    => 'pages.edit',
+        'uses'  => 'PageController@editPage'
+    ]);
 
+});
+Route::prefix('doctrine')->namespace('Doctrine')->group(function (){
+
+    Route::get('/{id}',[
+        'as'   => 'doctrine',
+        'uses' => 'DoctrineController@getDoctrineView'
+    ]);
+    Route::get('/get/{id}',[
+        'as'   => 'doctrine',
+        'uses' => 'DoctrineController@getDoctrineById'
+    ]);
+    Route::get('/fit/{id}',[
+        'as'   => 'doctrine.get',
+        'uses' => 'DoctrineController@getFittingById'
+    ]);
+
+    Route::post('/{id}/savefitting', [
+        'as'   => 'doctrine.saveFitting',
+        'uses' => 'DoctrineController@saveFitting',
+    ]);
+    Route::get('/fitting/delete/{id}', [
+        'as'   => 'doctrine.deleteFitting',
+        'uses' => 'DoctrineController@deleteFitting',
+    ]);
+});
 
 Route::get('/', [
     'as'   => 'landing',
@@ -93,35 +131,12 @@ Route::get('/home', [
     'as'   => 'home',
     'uses' => 'HomeController@getHome'
 ]);
-Route::get('/doctrine/{id}',[
-    'as'   => 'doctrine',
-    'uses' => 'DoctrineController@getDoctrineView'
-]);
-Route::get('/doctrine/get/{id}',[
-    'as'   => 'doctrine',
-    'uses' => 'DoctrineController@getDoctrineById'
-]);
-Route::get('/doctrine/fit/{id}',[
-    'as'   => 'doctrine.get',
-    'uses' => 'DoctrineController@getFittingById'
-]);
 Route::get('/join',[
     'as'   => 'join',
     'uses' => 'PageController@getJoin'
 ]);
 
-Route::get('/pages', [
-    'as'    => 'pageindex',
-    'uses'  => 'PageController@getIndex'
-]);
-Route::get('/pages/{id}', [
-   'as'    => 'pages',
-   'uses'  => 'PageController@getPage'
-]);
-Route::get('/pages/{id}/edit', [
-    'as'    => 'pages.edit',
-    'uses'  => 'PageController@editPage'
-]);
+
 Route::get('/users', [
     'as'    => 'users',
     'uses'  => 'PageController@getUser'
@@ -136,14 +151,6 @@ Route::get('/logout', [
 ]);
 Auth::routes(['register' => false]);
 
-Route::post('/doctrine/{id}/savefitting', [
-    'as'   => 'doctrine.saveFitting',
-    'uses' => 'DoctrineController@saveFitting',
-]);
-Route::get('/fitting/delete/{id}', [
-    'as'   => 'doctrine.deleteFitting',
-    'uses' => 'DoctrineController@deleteFitting',
-]);
 Route::post('/role/add', [
     'as'    => 'role.add',
     'uses'  => 'Auth\RoleController@addRole'

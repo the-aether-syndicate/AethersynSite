@@ -6,7 +6,7 @@
  * Time: 8:12 PM
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Pages;
 
 
 use App\Http\Controllers\Auth\RoleController;

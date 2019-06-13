@@ -3,9 +3,13 @@
 namespace App\Providers;
 
 
+use App\Models\Doctrines\Doctrine;
+use App\Models\Page\Page;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Socialite\SocialiteManager;
 use App\Extensions\EveOnlineProvider;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use Illuminate\Contracts\Events\Dispatcher;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -47,8 +51,31 @@ class AppServiceProvider extends ServiceProvider
             }
         );
     }
-    public function boot()
+    public function boot(Dispatcher $events)
     {
-        //
+        $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
+            $pages = Page::all()->map(function (Page $page) {
+                return [
+                    'text' => $page['title'],
+                    'url' => 'pages/' . $page['id']
+                ];
+            });
+            $event->menu->add([
+             'text' => 'Pages',
+             'submenu'=> $pages
+
+            ]);
+            $event->menu->add('DOCTRINES');
+            $doctrines = Doctrine::all()->map(function (Doctrine $doctrine){
+                return [
+                  'text' => $doctrine['name'],
+                  'url' => $doctrine['id']
+                ];
+            });
+        $event->menu->add([
+            'text' => 'Doctrines',
+            'submenu'=> $doctrines
+        ]);
+        });
     }
 }

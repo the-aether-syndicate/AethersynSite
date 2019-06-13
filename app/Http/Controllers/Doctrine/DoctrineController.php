@@ -6,7 +6,7 @@
  * Time: 10:18 PM
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Doctrine;
 
 
 use App\Validation\FittingValidation;
