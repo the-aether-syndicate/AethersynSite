@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Pages;
 
 
 use App\Http\Controllers\Auth\RoleController;
+use App\Http\Controllers\Controller;
 use App\Models\Auth\Role;
 use App\Models\Page\Page;
 use App\Validation\PageValidation;
