@@ -65,9 +65,10 @@ class AppServiceProvider extends ServiceProvider
              'submenu'=>[
                  [
                  'text' => 'New Page',
-                 'url' => 'pages/newpage'
-             ],
-                 $pages
+                 'url' => 'pages/newpage',
+                 'submenu'=>[$pages]
+                 ],
+                 
 
             ]]);
         });
