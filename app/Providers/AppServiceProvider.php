@@ -63,12 +63,13 @@ class AppServiceProvider extends ServiceProvider
             $event->menu->add([
              'text' => 'Pages',
              'submenu'=>[
+                 [
                  'text' => 'New Page',
                  'url' => 'pages/newpage'
              ],
                  $pages
 
-            ]);
+            ]]);
         });
     }
 }
