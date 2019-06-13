@@ -12,9 +12,9 @@
     <div class="box-body">
         @php
         use App\Models\Auth\Role;
-        use App\Models\Doctrines\Fitting;
+        
             $roles = Role::all();
-            $fits = Fitting::all();
+
         @endphp
         <form method="POST" action="/role/add">
             @csrf
