@@ -9,7 +9,7 @@
         <h4>Title</h4>
         <input type="text" name="ptitle" value="Title Goes Here" style="background-color: #222d32;color:#fff;">
         <select name="prole" form="pageform" value="Choose Role Restriction">
-            @foreach(Role::all() as $role)
+            @foreach($roles as $role)
                 <option value="{{$role->id}}">{{ $role->name }}</option>
             @endforeach
         </select>

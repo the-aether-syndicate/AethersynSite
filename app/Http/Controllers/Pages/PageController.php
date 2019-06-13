@@ -69,7 +69,8 @@ class PageController extends Controller
     }
     public function newPage()
     {
-        return view('pages.newpage');
+        $roles = Role::all();
+        return view('pages.newpage', compact('roles'));
     }
     public function editPage($pageid)
     {
