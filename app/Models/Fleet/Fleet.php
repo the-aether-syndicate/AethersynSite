@@ -28,36 +28,20 @@ class Fleet extends Model
         $this->active = false;
         $this->complete = true;
         $this->ended_at = Carbon::now();
-        $punches = $this->punches()->where('out_time', null)->get();
-        //dd($punches);
-        foreach ($punches as $punch)
-        {
-            $punch->out_time = $this->ended_at;
-        }
-        $this->punchOut();
         $this->ended_at = Carbon::now();
-    }
-    public function punches()
-    {
-        return $this->hasMany(Punch::class);
     }
     public function participants()
     {
-        return $this->belongsToMany(User::class)->using( Punch::class);
+        return $this->belongsToMany(User::class);
     }
     public function hasMember($userid)
     {
         //$member = $this->participants()->where('user_id', $userid)->first();
-        $punch = $this->punches()->where('user_id', $userid)->latest()->first();
-        if($punch) {
-            if ($punch->out_time == null) {
-                return 1;
-            }
-            if ($punch->out_time != null) {
-                return 2;
-            }
+        $user = $this->participants()->find($userid);
+        if($user) {
+            return true;
         }
-        return 0;
+        return false;
     }
     public function duration()
     {
@@ -76,36 +60,5 @@ class Fleet extends Model
         $seconds = $end->diffInSeconds($start);
 
         return $seconds;
-    }
-    public function punchIn()
-    {
-        $in_time = now();
-        $user = auth()->user();
-        $this->punches()->create(['user_id' => $user->id, 'fleet_id'=>$this->id]);
-        $punch = Punch::where(['user_id' => $user->id, 'fleet_id'=>$this->id])->latest()->get()->first();
-        $punch->in_time = $in_time;
-        $punch->user()->associate($user);
-        $punch->fleet()->associate($this);
-        $punch->save();
-        return redirect()->back();
-    }
-    public function punchOut()
-    {
-        $out_time = now();
-        $user = auth()->user();
-        $punch = Punch::where(['user_id' => $user->id, 'fleet_id'=>$this->id])->latest()->get()->first();
-        $punch->out_time = $out_time;
-        $punch->save();
-        return redirect()->back();
-    }
-    public function rejoin()
-    {
-        $in_time = now();
-        $user = auth()->user();
-        $this->punches()->create(['user_id' => $user->id, 'fleet_id'=>$this->id]);
-        $punch = Punch::where(['user_id' => $user->id, 'fleet_id'=>$this->id])->latest()->get()->first();
-        $punch->in_time = $in_time;
-        $punch->save();
-        return redirect()->back();
     }
 }
