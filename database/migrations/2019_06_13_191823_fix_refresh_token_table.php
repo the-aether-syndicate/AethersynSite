@@ -14,13 +14,12 @@ class FixRefreshTokenTable extends Migration
     public function up()
     {
         Schema::dropIfExists('refreshToken');
-        Schema::create('refreshTokem', function (Blueprint $table) {
+        Schema::create('refreshToken', function (Blueprint $table) {
             $table->bigInteger('character_id');
 
             $table->mediumText('refresh_token');
             $table->json('scopes');
             $table->timestamp('expires_on');
-            $table->timestamp('deleted_at');
             $table->string('token');
             $table->string('description');
             $table->timestamps();
