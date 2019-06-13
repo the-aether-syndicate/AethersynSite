@@ -96,7 +96,22 @@ Route::prefix('pages')->namespace('Pages')->group(function (){
         'as'    => 'pages.edit',
         'uses'  => 'PageController@editPage'
     ]);
-
+    Route::get('/newpage', [
+        'as'   => 'page.new',
+        'uses' => 'PageController@newPage'
+    ]);
+    Route::post('/postpage', [
+        'as'    => 'page.post',
+        'uses'  => 'PageController@postPage'
+    ]);
+    Route::get('/users', [
+        'as'    => 'users',
+        'uses'  => 'PageController@getUser'
+    ]);
+    Route::get('/roles', [
+        'as'    => 'roles',
+        'uses'  => 'PageController@getRoles'
+    ]);
 });
 Route::prefix('doctrine')->namespace('Doctrine')->group(function (){
 
@@ -137,14 +152,7 @@ Route::get('/join',[
 ]);
 
 
-Route::get('/users', [
-    'as'    => 'users',
-    'uses'  => 'PageController@getUser'
-]);
-Route::get('/roles', [
-    'as'    => 'roles',
-    'uses'  => 'PageController@getRoles'
-]);
+
 Route::get('/logout', [
     'as'   => 'logout',
     'uses' => 'Auth\LoginController@logout'
@@ -155,14 +163,7 @@ Route::post('/role/add', [
     'as'    => 'role.add',
     'uses'  => 'Auth\RoleController@addRole'
 ]);
-Route::get('/newpage', [
-    'as'   => 'page.new',
-    'uses' => 'PageController@newPage'
-]);
-Route::post('/postpage', [
-    'as'    => 'page.post',
-    'uses'  => 'PageController@postPage'
-]);
+
 Route::post('/role/delete', [
     'as'    => 'role.delete',
     'uses'  => 'Auth\RoleController@deleteRole'
