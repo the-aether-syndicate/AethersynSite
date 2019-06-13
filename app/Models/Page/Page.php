@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model
 {
     public $timestamps = true;
-    protected $table = 'pages';
+    protected $table = 'page';
 
     protected $fillable = ['title','pagecontent','role'];
 
