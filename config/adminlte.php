@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => 'TriglavDefense',
+    'logo' => 'The Aether Syndicate',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,25 +107,6 @@ return [
 
     'menu' => [
         'MAIN NAVIGATION',
-        [
-            'text'          => 'Doctrines',
-            'icon_color'    => 'red',
-            'submenu'       => [
-                [
-                    'text'          => 'Shield Fleet',
-                    'icon'          => 'fa-shield-alt',
-                    'icon_color'    => 'blue',
-                    'url'           => 'doctrine/1'
-                ]
-            ]
-
-        ],
-        [
-            'text'          => 'Fleets',
-            'icon'          => 'fa-shield-alt',
-            'icon_color'    => 'blue',
-            'url'           => 'fleet/index'
-        ],
 
         /*
         'ACCOUNT SETTINGS',
@@ -180,17 +161,12 @@ return [
         */
         'More Info',
         [
-            'text'       => 'Pages',
-            'url'        => 'pages',
-            'icon_color' => 'red',
-        ],
-        [
             'text'       => 'In Game Channel',
             'url'        => '#',
             'icon_color' => 'blue',
             'submenu'    => [
                 [
-                    'text' => 'Triglav Defense',
+                    'text' => 'whatever the fuck this is',
                     'icon' => '',
                 ],
             ]
