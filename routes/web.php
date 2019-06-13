@@ -104,14 +104,7 @@ Route::prefix('pages')->namespace('Pages')->group(function (){
         'as'    => 'page.post',
         'uses'  => 'PageController@postPage'
     ]);
-    Route::get('/users', [
-        'as'    => 'users',
-        'uses'  => 'PageController@getUser'
-    ]);
-    Route::get('/roles', [
-        'as'    => 'roles',
-        'uses'  => 'PageController@getRoles'
-    ]);
+
 });
 Route::prefix('doctrine')->namespace('Doctrine')->group(function (){
 
@@ -137,7 +130,14 @@ Route::prefix('doctrine')->namespace('Doctrine')->group(function (){
         'uses' => 'DoctrineController@deleteFitting',
     ]);
 });
-
+Route::get('/users', [
+    'as'    => 'users',
+    'uses'  => 'Pages\PageController@getUser'
+]);
+Route::get('/roles', [
+    'as'    => 'roles',
+    'uses'  => 'Pages\PageController@getRoles'
+]);
 Route::get('/', [
     'as'   => 'landing',
     'uses' => 'HomeController@index'
