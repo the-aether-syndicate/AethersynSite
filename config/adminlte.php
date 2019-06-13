@@ -199,7 +199,7 @@ return [
                 [
                     'text'        => 'Roles',
                     'url'         => 'roles',
-                    'role'        => 'admin'
+                    
 
                 ],
                 [
