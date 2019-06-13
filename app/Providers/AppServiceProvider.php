@@ -65,17 +65,6 @@ class AppServiceProvider extends ServiceProvider
              'submenu'=> $pages
 
             ]);
-            $event->menu->add('DOCTRINES');
-            $doctrines = Doctrine::all()->map(function (Doctrine $doctrine){
-                return [
-                  'text' => $doctrine['name'],
-                  'url' => $doctrine['id']
-                ];
-            });
-        $event->menu->add([
-            'text' => 'Doctrines',
-            'submenu'=> $doctrines
-        ]);
         });
     }
 }

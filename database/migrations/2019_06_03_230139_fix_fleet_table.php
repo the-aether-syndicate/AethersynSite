@@ -14,7 +14,6 @@ class FixFleetTable extends Migration
     public function up()
     {
         Schema::dropIfExists('fleet');
-        Schema::dropIfExists('punch');
         Schema::create('fleet', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('fc');
@@ -26,12 +25,7 @@ class FixFleetTable extends Migration
             $table->timestamp('start_at');
             $table->timestamps();
         });
-        Schema::create('punch', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamp('in_time')->nullable();
-            $table->timestamp('out_time')->nullable();
-            $table->timestamps();
-        });
+
     }
 
     /**
@@ -42,6 +36,6 @@ class FixFleetTable extends Migration
     public function down()
     {
         Schema::dropIfExists('fleet');
-        Schema::dropIfExists('punch');
+
     }
 }
