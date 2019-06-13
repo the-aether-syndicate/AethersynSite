@@ -88,11 +88,11 @@ Route::prefix('pages')->namespace('Pages')->group(function (){
         'as'    => 'pageindex',
         'uses'  => 'PageController@getIndex'
     ]);
-    Route::get('/{id}', [
+    Route::get('/view/{id}', [
         'as'    => 'pages',
         'uses'  => 'PageController@getPage'
     ]);
-    Route::get('/{id}/edit', [
+    Route::get('/edit/{id}', [
         'as'    => 'pages.edit',
         'uses'  => 'PageController@editPage'
     ]);
