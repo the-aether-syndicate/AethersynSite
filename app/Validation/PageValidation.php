@@ -21,7 +21,8 @@ class PageValidation extends FormRequest
     {
         return [
             'ptitle' => 'string',
-            'pagecontent' => 'string'
+            'pagecontent' => 'string',
+            'prole' => 'string',
         ];
     }
 }

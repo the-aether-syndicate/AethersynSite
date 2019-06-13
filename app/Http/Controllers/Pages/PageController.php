@@ -36,6 +36,17 @@ class PageController extends Controller
         $id = $pageid;
         $pagecontent = $page->pagecontent;
         $created = $page->created_at;
+
+        if($page->role)
+        {
+            if(auth()->user()->hasRole($page->role))
+            {
+                return view('pages.modularpage', compact('ptitle','pagecontent','created', 'id'));
+            }
+            else
+                return view('no');
+        }
+
         return view('pages.modularpage', compact('ptitle','pagecontent','created', 'id'));
     }
     public function getUser()
@@ -72,6 +83,12 @@ class PageController extends Controller
         $content = $request->pagecontent;
 
         $page = Page::updateOrCreate(['title' => $title],[ 'pagecontent' => $content]);
+        if($request->prole)
+        {
+            $page->role = $request->prole;
+            $page->save();
+        }
+
 
 
         return redirect()->route('pages',['title'=>$page->id]);

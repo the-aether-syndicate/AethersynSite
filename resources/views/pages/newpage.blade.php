@@ -4,10 +4,15 @@
 <h3>New Page</h3>
 @stop
 @section('full')
-    <form method="POST" action="/postpage">
+    <form method="POST" action="/postpage" id="pageform">
         @csrf
         <h4>Title</h4>
         <input type="text" name="ptitle" value="Title Goes Here" style="background-color: #222d32;color:#fff;">
+        <select name="prole" form="pageform" value="Choose Role Restriction">
+            @foreach(Role::all() as $role)
+                <option value="{{$role->id}}">{{ $role->name }}</option>
+            @endforeach
+        </select>
         <input type="submit" value="Submit" class="btn btn-md pull-right btn-success">
         <br>
         <h5>Body</h5>
