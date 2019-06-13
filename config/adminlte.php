@@ -185,6 +185,11 @@ return [
 
         ],
         [
+            'text' => 'New Page',
+            'url'  => 'pages/newpages',
+            'icon' => 'fa-plus',
+        ],
+        [
             'text'     => 'Admin',
             'icon_color'    => 'red',
             'icon'          => 'fa-cog',
